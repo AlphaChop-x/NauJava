@@ -21,29 +21,26 @@ public class WorkWithLists {
 
         System.out.println("Unsorted array: " + arr);
 
-        bubbleSort(arr);
+        selectionSort(arr);
 
         System.out.println("Sorted array: " + arr);
     }
 
-    public static void bubbleSort(ArrayList<Integer> intArray) {
-        //А вот в питочике можно arr[i],arr[i+1] = arr[i+1],arr[i]
+    public static void selectionSort(ArrayList<Integer> intArray) {
+        int n = intArray.size();
         int temp;
-        for (int i = 0; i < intArray.size() - 1; i++) {
-            //Флаг для оптимизации
-            boolean flag = false;
-            for (int j = 0; j < intArray.size() - i - 1; j++) {
-                if (intArray.get(j) > intArray.get(j + 1)) {
-                    temp = intArray.get(j);
-                    intArray.set(j, intArray.get(j + 1));
-                    intArray.set(j + 1, temp);
-                    flag = true;
+
+        for (int i = 0; i < n; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (intArray.get(j) < intArray.get(minIndex)) {
+                    minIndex = j;
                 }
             }
-            //Если перестановок не было, то заканчиваем цикл
-            if (!flag) {
-                break;
-            }
+            temp = intArray.get(i);
+            intArray.set(i, intArray.get(minIndex));
+            intArray.set(minIndex, temp);
         }
     }
 }
+
